@@ -1,0 +1,402 @@
+$font: 'Open Sans', sans-serif;
+
+%none {
+  display: none;
+}
+
+%block {
+  display: block;
+}
+
+%reset {
+  margin: 0;
+  padding: 0;
+}
+
+%flex {
+  display: flex;
+}
+
+%column {
+  display: flex;
+  flex-direction: column;
+}
+
+%clickable-button {
+  color: #eee;
+  background: #c8340f;
+  border-radius: 10px;
+}
+
+*, *:before, *:after {
+  box-sizing: border-box;
+}
+
+*:before, *:after {
+  content: '';
+}
+
+html, body {
+  @extend %reset;
+  width: 100%;
+  height: 100%;
+  font-family: $font;
+  font-size: 16px;
+  line-height: (30/16);
+  color: #000;
+}
+
+ul {
+  @extend %reset;
+  list-style: none;
+}
+
+h1, h2, h3, h4, h5, h6, p {
+  @extend %reset;
+}
+
+a {
+  @extend %block;
+  text-decoration: none;
+}
+
+
+.app-header {
+  @extend %flex;
+  justify-content: center;
+  background: #fff;
+  box-shadow: 0 4px 3px #ccc;
+
+  &-wrap {
+    padding: 25px;
+    width: 70%;
+    max-width: 1600px;
+    @extend %flex;
+    justify-content: space-between;
+  }
+
+  &-logo {
+    line-height: 0;
+
+    &__image {
+      width: 200px;
+    }
+  }
+}
+
+.app-nav {
+  @extend %flex;
+
+  &__link {
+    margin-right: 20px;
+    padding: 5px;
+    font-size: (20em/16);
+    color: #bbb;
+    border-radius: 20px;
+    transition: all .2s ease-out;
+
+    &-active, &:hover {
+      @extend %clickable-button;
+    }
+  }
+}
+
+.section {
+  padding: 50px 20px;
+  @extend %column;
+  align-items: center;
+}
+
+.main-heading {
+  font-size: (30em/16);
+}
+
+.colorpick {
+  position: relative;
+  padding: 15px;
+  margin-bottom: 20px;
+  width: 370px;
+  height: 350px;
+  background: rgba(255, 255, 255, 0.7);
+  z-index: 1;
+}
+
+.color-block {
+  position: relative;
+  padding: 15px;
+  margin-bottom: 45px;
+  background: #fff;
+  box-shadow: 0 2px 2px 1px #ccc;
+
+  &__heading {
+    margin-right: 20px;
+    margin-bottom: 15px;
+
+    &-block {
+      display: flex;
+      margin-bottom: 10px;
+    }
+  }
+
+  &__subheading {
+    margin-bottom: 15px;
+    font-size: 0.9em;
+  }
+
+  &__colorpicker {
+    position: absolute;
+    left: 0;
+    top: 40%;
+  }
+}
+
+.color-list {
+  display: flex;
+  flex-wrap: wrap;
+  margin-bottom: 15px;
+
+  &__item {
+    position: relative;
+    margin-right: 25px;
+    margin-bottom: 5px;
+    width: 50px;
+    height: 50px;
+    background: #eee;
+    border-radius: 50%;
+    transition: background-color .1s ease-in-out;
+
+    &:last-child {
+      margin-right: 0;
+    }
+
+    &:hover .add-button, &-chosen .add-button {
+      transform: translateX(-50%) scale(1);
+    }
+
+    &--active {
+
+      &:hover .close-button {
+        transform: translateX(-50%) scale(1);
+      }
+    }
+  }
+
+  &__buttons {
+    margin-top: 20px;
+  }
+
+  &__button {
+    padding: 5px;
+    margin-right: 10px;
+    border-radius: 4px;
+    border: none;
+    outline: none;
+  }
+}
+
+.schemed-colors {
+
+  &__item {
+    border-radius: 30%;
+  }
+}
+
+.mixed-colors {
+
+  &__heading {
+    margin-bottom: 0;
+  }
+
+  &__item {
+    border-radius: 10%;
+  }
+}
+
+.close-button {
+  position: absolute;
+  width: 15px;
+  height: 15px;
+  top: 45%;
+  left: 50%;
+  transform: translateX(-50%) scale(0);
+  transition: transform .1s ease-out;
+
+  &:before, &:after {
+    position: absolute;
+    width: 14px;
+    height: 2px;
+    background: #fff;
+  }
+
+  &:before {
+    transform: rotate(-45deg);
+  }
+
+  &:after {
+    transform: rotate(45deg);
+  }
+}
+
+.add-button {
+  @extend .close-button;
+
+  &:before {
+    transform: rotate(0deg);
+  }
+
+  &:after {
+    transform: rotate(90deg);
+  }
+}
+
+.theme {
+
+  &--heading {
+    margin-bottom: 20px;
+    text-align: left;
+  }
+
+  &__list {
+    display: flex;
+    flex-wrap: wrap;
+
+    &-item {
+      padding: 15px;
+      margin-right: 10px;
+      margin-bottom: 10px;
+      border: 1px solid #eee;
+      border-radius: 10px;
+      transition: box-shadow .3s ease-in;
+
+      &-active {
+        box-shadow: 0 0 10px 3px rgb(196, 134, 232);
+      }
+    }
+  }
+}
+
+.explore-wrapper, .preset-wrapper, .export-wrapper {
+  @extend %column;
+  justify-content: center;
+  align-items: center;
+}
+
+.explore-wrapper {
+  max-width: 1200px;
+}
+
+.pattern {
+
+  &__color {
+    display: block;
+    margin-bottom: 10px;
+    margin-right: auto;
+    margin-left: auto;
+    width: 40px;
+    height: 40px;
+    background: blue;
+
+    &-description {
+      font-weight: bold;
+    }
+  }
+}
+
+.preset {
+
+  &__list {
+    display: flex;
+    transition: box-shadow .2s ease-in-out;
+
+    &-active {
+      box-shadow: 0 0 10px 3px rgb(196, 134, 232);
+    }
+
+    &-item {
+      min-width: 100px;
+      height: 40px;
+    }
+  }
+}
+
+.export-section {
+  max-width: 70%;
+}
+
+.export-table {
+  margin-bottom: 50px;
+  width: 100%;
+  border-collapse: collapse;
+  text-align: center;
+
+  &__cell {
+    width: 20%;
+    border: 1px solid #ccc;
+    height: 70px;
+  }
+
+  &__color {
+
+    &-fill {
+      width: 100%;
+      height: 100%;
+      background: darkred;
+    }
+  }
+
+  &__variable {
+    padding: 5%;
+    width: auto;
+    min-width: 230px;
+
+    &-input {
+      border: none;
+      border-bottom: 1px solid #ccc;
+      outline: none;
+    }
+  }
+}
+
+.export-code {
+
+  &__buttons {
+    display: flex;
+    margin-bottom: 20px;
+  }
+
+  &__button {
+    margin-right: 10px;
+    padding: 5px 10px;
+    border: 1px solid #ccc;
+    background: transparent;
+    outline: none;
+    transition: background-color .2s ease;
+
+    &-active {
+      background: #aabbcc;
+    }
+  }
+
+  &__data {
+    padding: 20px;
+    width: 100%;
+    background: #eee;
+  }
+}
+
+.picker {
+  align-self: center;
+  width: 20px;
+  height: 20px;
+  background: red;
+  cursor: pointer;
+  border-radius: 35%
+}
+
+.main-footer {
+  @extend %column;
+  justify-content: center;
+  align-items: center;
+  height: 200px;
+  background: #cbcbcb;
+}
